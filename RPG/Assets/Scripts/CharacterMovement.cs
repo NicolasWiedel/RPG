@@ -8,10 +8,26 @@ public class CharacterMovement : MonoBehaviour
     public NavMeshAgent agent;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        Vector3 goal = new Vector3(0, 0, 5);
-        agent.SetDestination(goal);
+        
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray mousPos = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(mousPos, out hit))
+            {
+                agent.SetDestination(hit.point);
+            }
+            
+        }
+
+
+        
+    }
 }
